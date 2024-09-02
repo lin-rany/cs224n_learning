@@ -77,8 +77,8 @@ class ParserModel(nn.Module):
         
         self.dropout = nn.Dropout(self.dropout_prob)
         
-        # self.hidden_to_hidden_weight=nn.init.xavier_uniform_(torch.empty(self.hidden_size, self.hidden_size))
-        # self.hidden_to_hidden_bias= nn.init.uniform_(torch.empty(1, self.hidden_size))
+        self.hidden_to_hidden_weight=nn.init.xavier_uniform_(torch.empty(self.hidden_size, self.hidden_size))
+        self.hidden_to_hidden_bias= nn.init.uniform_(torch.empty(1, self.hidden_size))
         
         self.hidden_to_logits_weight=nn.init.xavier_uniform_(torch.empty(self.hidden_size, self.n_classes))
         self.hidden_to_logits_bias= nn.init.uniform_(torch.empty(1, self.n_classes))
@@ -163,9 +163,9 @@ class ParserModel(nn.Module):
         h = F.selu(torch.matmul(x,self.embed_to_hidden_weight)+self.embed_to_hidden_bias)
         if self.training:
             h=self.dropout(h)
-        # h = F.selu(torch.matmul(h,self.hidden_to_hidden_weight)+self.hidden_to_hidden_bias)
-        # if self.training:
-        #     h=self.dropout(h)
+        h = F.tanh(torch.matmul(h,self.hidden_to_hidden_weight)+self.hidden_to_hidden_bias)
+        if self.training:
+            h=self.dropout(h)
         logits=torch.matmul(h,self.hidden_to_logits_weight)+self.hidden_to_logits_bias
         ### END YOUR CODE
         return logits

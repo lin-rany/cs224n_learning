@@ -1,0 +1,30 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Python 调试程序: parser_model",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/a2/student/parser_model.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-f"
+            ]
+        },
+        {
+            "name": "Python 调试程序: run",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/a2/student/run.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-d"
+            ]
+        },
+
+    ]
+}
