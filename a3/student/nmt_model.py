@@ -342,7 +342,7 @@ class NMT(nn.Module):
         (dec_hidden, dec_cell)=dec_state
         b_dec_hidden=torch.unsqueeze(dec_hidden,dim=-1)
         e_t=torch.bmm(enc_hiddens_proj,b_dec_hidden)
-        e_t=torch.squeeze(e_t)
+        e_t=torch.squeeze(e_t,dim=-1)
         ### END YOUR CODE
 
         # Set e_t to -inf where enc_masks has 1
@@ -378,7 +378,7 @@ class NMT(nn.Module):
         alpha_t=torch.nn.functional.softmax(e_t,dim=1)
         b_alpha_t=torch.unsqueeze(alpha_t,dim=1)
         a_t=torch.bmm(b_alpha_t,enc_hiddens)
-        a_t=torch.squeeze(a_t)
+        a_t=torch.squeeze(a_t,dim=1)
         
         U_t=torch.cat((dec_hidden,a_t),dim=1)
         V_t=self.combined_output_projection(U_t)

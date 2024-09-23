@@ -1,0 +1,6 @@
+*.pyc
+nltk_data/
+*.out.*
+*.bin
+*.bin.*
+a2/student/results

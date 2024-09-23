@@ -6,6 +6,17 @@
     "configurations": [
         
         {
+            "name": "Python 调试程序: sanity_check -1f",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/a3/student/sanity_check.py",
+            "console": "integratedTerminal",
+            "args": [
+                "1f"
+            ],
+            "cwd": "${workspaceFolder}/a3/student"
+        },
+        {
             "name": "Python 调试程序: parser_model",
             "type": "debugpy",
             "request": "launch",
@@ -25,6 +36,29 @@
                 "-d"
             ]
         },
+        {
+            "name": "Python 调试程序: sanity_check -1d",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/a3/student/sanity_check.py",
+            "console": "integratedTerminal",
+            "args": [
+                "1d"
+            ],
+            "cwd": "${workspaceFolder}/a3/student"
+        },
+        {
+            "name": "Python 调试程序: sanity_check -1e",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/a3/student/sanity_check.py",
+            "console": "integratedTerminal",
+            "args": [
+                "1e"
+            ],
+            "cwd": "${workspaceFolder}/a3/student"
+        }
+        
 
     ]
 }

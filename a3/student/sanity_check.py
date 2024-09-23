@@ -267,5 +267,7 @@ def main():
 
 
 if __name__ == '__main__':
+    from nltk import data
+    data.path.append("/data2/ghc/RAG/lin_rany/code/cs224n_learning/nltk_data")
     main()
     
