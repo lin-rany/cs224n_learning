@@ -66,6 +66,7 @@ model = None
 if args.variant == 'vanilla':
     # TODO: [part c] Make some model here
     ### YOUR CODE HERE ###
+    model=models.GPT(mconf)
     pass
     ### END YOUR CODE ###
 elif args.variant == 'rope':
@@ -139,7 +140,18 @@ elif args.function == 'finetune':
     #         writer=writer
     #     You can use the args.reading_params_path flag to switch between the
     #     number of epochs for each case.
-
+    config_d=trainer.TrainerConfig(max_epochs=75,batch_size=256,num_workers=4,warmup_tokens=512*20,final_tokens=200*len(pretrain_dataset)*block_size,writer=writer)
+    config_f=trainer.TrainerConfig(max_epochs=10,batch_size=256,num_workers=4,warmup_tokens=512*20,final_tokens=200*len(pretrain_dataset)*block_size,writer=writer)
+    
+    train_config=config_d
+    if args.reading_params_path is None:
+        model=models.GPT(mconf)
+    else:
+        model=model.load_state_dict(torch.load(args.reading_params_path))
+        train_config=config_f
+    trainer=trainer.Trainer(model,pretrain_dataset,writer,train_config)
+    trainer.train()
+    trainer.save_checkpoint(args.writing_params_path)
     ### YOUR CODE HERE ###
     pass
     ### END YOUR CODE ###
